@@ -1,4 +1,4 @@
-package com.floss83.java_switch;
+package com.floss83.javaswitch;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
