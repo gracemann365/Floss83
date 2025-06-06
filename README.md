@@ -51,3 +51,8 @@ What This Proves:
 - Handles **real card message formats (ISO 8583)**.
 - Audits, logs, and routes transactions for **security, compliance, and demo value**.
 - **Open source:** Anyone can inspect/extend how real payment rails work.
+
+
+Upcoming Connection Handler 
+Audit Trails 
+and More 
