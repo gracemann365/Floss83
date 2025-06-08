@@ -16,7 +16,7 @@ build:
 # ── Running Services Locally ───────────────────────────────────────────
 
 # Run the api-service locally using Spring Boot
-runa:
+run:
   mvn spring-boot:run
 
 # ── Testing Commands ───────────────────────────────────────────────────
