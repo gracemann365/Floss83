@@ -1,0 +1,27 @@
+# ──────────────────────────────────────────────────────────────────────────────
+# Developer Justfile
+#
+#   Shortcuts for everyday local development.
+#   Run 'just --list' to see all commands.
+#   See comments for extra tips and best practices.
+# ──────────────────────────────────────────────────────────────────────────────
+
+# ── Project Build Commands ──────────────────────────────────────────────
+
+# Build the entire project (clean first, skip tests for speed)
+build:
+  mvn clean install -DskipTests
+
+
+# ── Running Services Locally ───────────────────────────────────────────
+
+# Run the api-service locally using Spring Boot
+run:
+  mvn spring-boot:run
+
+# ── Testing Commands ───────────────────────────────────────────────────
+
+# Run all tests in the project
+test:
+  mvn test
+
