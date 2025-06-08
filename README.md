@@ -56,3 +56,61 @@ What This Proves:
 Upcoming Connection Handler 
 Audit Trails 
 and More 
+
+Update 9th june 2025 : How The Connection Works Incoming Raw ISO8583
+
+```
+                        +----------------------------+
+                        |     Floss83 JavaSwitch     |
+                        |   ISO 8583 Engine (core)   |
+                        +----------------------------+
+                                   /        \
+                                  /          \
+                   [TCP Door]   /              \   [HTTP Door]
+                      |        /                \      |
+                      v       v                  v     v
+          +--------------------+        +-----------------------+
+          |   TcpServer.java   |        | IsoMessageController  |
+          | (port 5000)        |        | (@RestController)     |
+          +--------------------+        +-----------------------+
+                  |                               |
+                  |   hands off raw ISO 8583 msg   |
+                  |-------------------------------+
+                  |
+                  v
+         +---------------------+
+         |  Iso8583Parser.java |
+         +---------------------+
+                  |
+      parses, logs, validates, returns
+                  |
+           +--------------+
+           |  Console Log |
+           |  & ACK/ERR   |
+           +--------------+
+                  ^
+                  |
++-----------------+-------------------+
+|                                     |
+|         Test Clients                |
+|                                     |
+|  +---------------------+            |
+|  | ConnectionTest      |            |
+|  | TcpClient.py        |            |
+|  +---------------------+            |
+|        |                            |
+|   TCP connect:5000                  |
+|        v                            |
+|    TcpServer.java                   |
+|                                     |
+|  +-------------------------+        |
+|  | ConnectionTestHttpsClient.py |   |
+|  +-------------------------+        |
+|        |                            |
+|   HTTP POST :8080/api/iso8583       |
+|        v                            |
+|   IsoMessageController.java          |
++-------------------------------------+
+
+
+```
