@@ -1,7 +1,8 @@
-![image](https://github.com/user-attachments/assets/25a1fe17-38dd-4165-b0f0-31758e27a979)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/b85e77d8-59d4-417b-b673-78c5ccf4d8cc" alt="Alt text for your image">
+</p>
 
-
-
+---
 
 ```
                         +---------------------------+
