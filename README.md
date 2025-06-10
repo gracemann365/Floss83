@@ -57,6 +57,64 @@ Upcoming Connection Handler
 Audit Trails 
 and More 
 
+
+Update 10th June 2025 : How do I make sure Your PAN CVV doesnt get stolen by some dude in hoodie 
+
+---
+
+## 🚧 Branch 4: Tokenization & HSM Simulator (core/tokenization-hsm-sim) 🚧
+
+> _“If you can’t explain it to your grandma or a summer intern, you don’t deserve to run prod.”_
+
+### 🧩 **What’s New?**
+
+- Plugged a PCI-style tokenization and ‘fake ass vault’ layer (HsmSimulator + TokenizationService) into the core JavaSwitch
+- All PAN and CVV data now **locked up** with strong AES encryption before anything touches it downstream
+- Every operation is **audit-logged** (timestamp, event type, input/output masked, status)
+- Tampered tokens get you a loud FAIL in the logs (hacker? back to school, bitch)
+- _No DB, no cloud, no prod secrets—dev only, but ready for a real HSM drop-in when it matters_
+
+---
+
+### 🤖 **ASCII For Dummies: “What The F*** Is Happening Here !?”**
+
+```text
+         +-------------------------------+
+         |         Network Layer         |
+         |   (TCP Handler, ISO Inbound)  |
+         +---------------+---------------+
+                         |
+                         v
+         +---------------+---------------+
+         |    TokenizationService.java   |
+         |   - Receives raw PAN/CVV      |
+         |   - Validates, calls HSM      |
+         |   - Only hands out tokens     |
+         +---------------+---------------+
+                         |
+                         v
+         +-------------------------------+
+         |      HsmSimulator.java        |
+         |   - Simulates a bank HSM      |
+         |   - AES/CBC encryption        |
+         |   - In-memory key (dev only)  |
+         +---------------+---------------+
+                         |
+                         v
+              (No DB or persistence)
+                         |
+                         v
+         +-------------------------------+
+         |      Downstream Switch/Flow   |
+         |    (Sees only tokens)         |
+         +-------------------------------+
+
+**Log output on every call (PCI-style):**
+    [AUDIT] TOKENIZE_PAN  | 2025-06-10T... | IN: ***5454 | OUT: *** | SUCCESS
+    [AUDIT] DETOKENIZE_PAN| ...            | IN: ***    | OUT: ***5454 | SUCCESS
+    [AUDIT] ...           | ...            | ...        | ...   | FAIL: reason
+
+```
 Update 9th june 2025 : How The Connection Works Incoming Raw ISO8583
 
 ```
