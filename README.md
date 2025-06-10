@@ -23,39 +23,70 @@ Open Source ISO 8583 Card Switch for Modern Fintech Auditing &amp; GTM Testing
 
 
 ```text
-+------------------+         +--------------------------+        +----------------+
-|  Card Machine /  |         |      Floss83 Card        |        |   Fraud Check  |
-|     POS / ATM    |-------> |     Switch Engine        |<-----> |   Service      |
-|  (Sends ISO 8583 |   (a)   |  (Parses, routes, logs,  |   (c)  |  (Python micro-|
-|   payment msg)   |         |  audits card messages)   |        |    service)    |
-+------------------+         +--------------------------+        +----------------+
-        |                            |      ^      |
-        |         (b)                |      |      |
-        +--------------------------->|      |      |
-                                      |      |      |
-                                      |      |      |
-                              +---------------------+
-                              |  Simulated Bank/Card|
-                              |  Network Endpoint   |
-                              | (Approves/Declines) |
-                              +---------------------+
+      (a) ISO 8583 Payment Msg (TCP)
++------------------+         +--------------------------+       (c) Fraud Check (REST/HTTP)
+|  Card Machine /  | -------> |   Floss83 Card Switch    | <------------------------+        
+|     POS / ATM    |         |      Engine (Java)       |                          |
+|  (Sends ISO 8583 |         | - Parses & routes        |                          |
+|   payment msg)   |         | - Tokenizes PAN/CVV      |                          |
++------------------+         | - PCI audit logs         |                          |
+                             | - Calls fraud check      |       +------------------+
+         ^                   | - Sends to downstream    |       |    Fraud Check   |
+         |                   +--------------------------+       |     Service      |
+         |                            |       ^                | (Python micro-   |
+         |       (b) Downstream ISO   |       |                |   service, ML)   |
+         +--------------------------->|       |                +------------------+
+                                      |       |
+                                      v       |
+                          +-----------------------------+
+                          |  Simulated Bank/Card Network|
+                          |     Endpoint (ISO 8583)     |
+                          | (Approves/Declines Txn)     |
+                          +-----------------------------+
 ```
-LEGEND:
-(a) Card machine or ATM sends a card payment message (ISO 8583) to the Switch.
-(b) Floss83 parses the message, tokenizes card data, checks for fraud, logs/audits it.
-(c) Switch consults a Python fraud engine for risk rules.
-(d) Switch forwards the message to a simulated bank/card network for approval/decline.
 
-What This Proves:
-- **This is a “mini Visa/MasterCard in a box” for developer learning/testing.**
-- Handles **real card message formats (ISO 8583)**.
-- Audits, logs, and routes transactions for **security, compliance, and demo value**.
-- **Open source:** Anyone can inspect/extend how real payment rails work.
+---
+
+## **Flow Explanation:**
+
+1. **(a) Card Machine/POS/ATM sends an ISO 8583 message over TCP**
+
+   * Could be a real POS or a FakePOS script (Python/Java) sending a payment request.
+
+2. **Floss83 Card Switch Engine (Java) receives the message via TCP**
+
+   * **Parses the ISO 8583** message (gets PAN, CVV, amount, etc.)
+   * **Tokenizes PAN/CVV immediately** (calls TokenizationService, logs every op)
+   * **PCI audit logs**—no clear PAN/CVV ever in logs or output
+
+3. **(c) Fraud Check (Python microservice)**
+
+   * **Java engine calls out via REST/HTTP (or gRPC)** to the fraud service
+   * Sends tokenized fields and other data for risk scoring/fraud analysis
+   * Fraud engine responds: “fraud”/“no fraud” or a risk score
+
+4. **(b) Downstream routing**
+
+   * If transaction is clean, Java switch **forwards (maybe re-maps) the ISO 8583** to the next hop (bank, network, simulator, etc.)
+   * If declined or flagged, logs/audits and may reject the transaction
+
+5. **Simulated Bank/Card Network Endpoint**
+
+   * Could be a dummy server or stub that “approves” or “declines” (for full E2E test/dev)
+
+---
+
+### **How each part connects:**
+
+* **TCP client (POS) → Java TCP server (Switch) → Python REST Fraud → (optional) Downstream Bank**
+* **No sensitive data leaks outside the Switch.**
+* **Logs are always PCI-safe, tokens only.**
+
+---
+## modern fintech infra works:
+**Old school rails (TCP/ISO), new school fraud (Python/REST), and audit-grade everything.**
 
 
-Upcoming Connection Handler 
-Audit Trails 
-and More 
 
 
 Update 10th June 2025 : How do I make sure Your PAN CVV doesnt get stolen by some dude in hoodie 
@@ -76,7 +107,7 @@ Update 10th June 2025 : How do I make sure Your PAN CVV doesnt get stolen by som
 
 ---
 
-### 🤖 **ASCII For Dummies: “What The F*** Is Happening Here !?”**
+### 🤖 ASCII For Dummies: “What The F*** Is Happening Here !?”
 
 ```text
          +-------------------------------+
