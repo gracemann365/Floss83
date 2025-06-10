@@ -36,7 +36,7 @@ public class Iso8583ParserDemo {
             System.out.println("MTI: " + isoMessage.getMti());
             System.out.println("Primary Bitmap: " + isoMessage.getPrimaryBitmap());
             System.out.println("Data Elements:");
-            isoMessage.getDataElements().forEach((field, value) -> {
+            isoMessage.getMutableDataElements().forEach((field, value) -> {
                 System.out.println("Field " + field + ": " + value);
             });
 

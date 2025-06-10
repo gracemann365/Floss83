@@ -1,4 +1,9 @@
 import socket
+'''
+USE SEPRATE ATM/POS MACHINE simulator tcp client from now on it has better features check the root or readme
+@deprecated
+
+'''
 
 """
 This is exactly 82 chars. It covers:

@@ -135,7 +135,7 @@ public class TokenizationService {
      * Masks input for logging: shows only last 4 characters for PAN/CVV.
      * If the value is a token (usually much longer), shows as "***".
      */
-    private String mask(String val) {
+    public String mask(String val) {
         if (val == null)
             return null;
         if (val.matches("\\d{6,19}")) // Looks like a PAN

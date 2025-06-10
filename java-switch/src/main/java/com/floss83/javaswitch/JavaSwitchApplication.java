@@ -7,5 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class JavaSwitchApplication {
     public static void main(String[] args) {
         SpringApplication.run(JavaSwitchApplication.class, args);
+        System.out.println("[TOMCAT] Server starting on port 8080 ");
     }
 }

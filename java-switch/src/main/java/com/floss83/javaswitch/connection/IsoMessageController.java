@@ -109,7 +109,7 @@ public class IsoMessageController {
             StringBuilder sb = new StringBuilder();
             sb.append("MTI: ").append(parsed.getMti()).append("\n");
 
-            Map<Integer, String> fields = parsed.getDataElements();
+            Map<Integer, String> fields = parsed.getMutableDataElements();
 
             // Tokenize PAN (Field 2) and CVV (Field 52) if present
             String pan = fields.get(2); // PAN

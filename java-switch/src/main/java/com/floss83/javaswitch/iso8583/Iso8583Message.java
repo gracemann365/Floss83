@@ -9,15 +9,19 @@ import java.util.Map;
  * <p>
  * This class encapsulates the core components of an ISO 8583 message:
  * <ul>
- *   <li>Message Type Indicator (MTI)</li>
- *   <li>Primary and optional Secondary Bitmaps</li>
- *   <li>Data Elements mapped by field number</li>
+ * <li>Message Type Indicator (MTI)</li>
+ * <li>Primary and optional Secondary Bitmaps</li>
+ * <li>Data Elements mapped by field number</li>
  * </ul>
  * <p>
- * Instances of this class are immutable post parsing to ensure message integrity for audit and compliance.
+ * Instances of this class are immutable post parsing to ensure message
+ * integrity for audit and compliance.
  * All accessors provide read-only views or copies where necessary.
  * </p>
- * <p><b>Usage:</b> Created and populated by {@link Iso8583Parser} during message decoding.</p>
+ * <p>
+ * <b>Usage:</b> Created and populated by {@link Iso8583Parser} during message
+ * decoding.
+ * </p>
  *
  * @author Gracemann365
  * @since 1.0
@@ -30,7 +34,10 @@ public class Iso8583Message {
     /** Primary bitmap representing presence of data elements 1-64. */
     private BitSet primaryBitmap;
 
-    /** Secondary bitmap representing presence of data elements 65-128; may be null if absent. */
+    /**
+     * Secondary bitmap representing presence of data elements 65-128; may be null
+     * if absent.
+     */
     private BitSet secondaryBitmap;
 
     /** Map storing parsed data elements: field number → value. */
@@ -102,12 +109,11 @@ public class Iso8583Message {
     }
 
     /**
-     * Returns an unmodifiable view of the data elements map.
-     *
-     * @return map of field number to field value string
+     * Returns the mutable data elements map (AUDIT/DEV USE ONLY!).
+     * Mutating this map will change the in-memory ISO8583 message!
      */
-    public Map<Integer, String> getDataElements() {
-        return Map.copyOf(dataElements);
+    public Map<Integer, String> getMutableDataElements() {
+        return dataElements;
     }
 
     /**
@@ -115,7 +121,7 @@ public class Iso8583Message {
      * Package-private to restrict external modification.
      *
      * @param fieldNumber the ISO 8583 data element number (1-128)
-     * @param value the string value of the data element
+     * @param value       the string value of the data element
      */
     void setDataElement(int fieldNumber, String value) {
         dataElements.put(fieldNumber, value);
