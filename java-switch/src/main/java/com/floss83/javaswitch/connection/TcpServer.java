@@ -22,7 +22,7 @@ import com.floss83.javaswitch.tokenization.TokenizationService;
  * or test tools.</li>
  * <li>Each incoming connection is treated as a single request/response session
  * (blocking I/O).</li>
- * <li>All PCI-sensitive data (e.g., PAN) is tokenized before any further
+ * <li>All PCI-sensitive data (e.g., PAN, CVV) is tokenized before any further
  * processing, logging, or outbound flow.</li>
  * <li>This class is designed for DEV/QA/AUDIT environments, not for
  * production/high-load use.</li>
@@ -45,14 +45,6 @@ import com.floss83.javaswitch.tokenization.TokenizationService;
  * only.</li>
  * </ul>
  *
- * <b>For Production:</b>
- * <ul>
- * <li>Implement length-prefixed protocol, concurrency, socket timeouts, and
- * robust error isolation.</li>
- * <li>Never use blocking-per-connection model or single-threaded server for
- * real payment traffic.</li>
- * </ul>
- *
  * @author Floss83
  * @version 1.2 (Audit-Grade)
  */
@@ -63,7 +55,7 @@ public class TcpServer implements Runnable {
 
     /**
      * Create a new ISO8583 TCP server.
-     * 
+     *
      * @param port                The TCP port to listen on (e.g., 5000).
      * @param tokenizationService The PCI-compliant tokenization service to use.
      */
@@ -106,16 +98,24 @@ public class TcpServer implements Runnable {
                             // 2. Parse ISO8583 message structure
                             Iso8583Message parsed = parser.parse(message);
 
-                            // 3. Tokenize sensitive fields (e.g., PAN, field 2) for PCI compliance
+                            // 3a. Tokenize PAN (Field 2) for PCI compliance
                             String pan = parsed.getDataElement(2);
-                            String tokenizedPan = pan != null ? tokenizationService.tokenizePan(pan) : null;
-
-                            if (tokenizedPan != null) {
-                                parsed.getMutableDataElements().put(2, tokenizedPan);
-                                System.out.println("[AUDIT] PAN tokenized in TCP flow: "
+                            if (pan != null) {
+                                String panToken = tokenizationService.tokenizePan(pan);
+                                parsed.getMutableDataElements().put(2, panToken);
+                                System.out.println("[AUDIT] TOKENIZE_PAN       | IN: "
                                         + tokenizationService.mask(pan)
-                                        + " -> "
-                                        + tokenizationService.mask(tokenizedPan));
+                                        + " -> OUT: " + tokenizationService.mask(panToken));
+                            }
+
+                            // 3b. Tokenize PIN/CVV (Field 52) for PCI compliance
+                            String cvv = parsed.getDataElement(52);
+                            if (cvv != null) {
+                                String cvvToken = tokenizationService.tokenizeCvv(cvv);
+                                parsed.getMutableDataElements().put(52, cvvToken);
+                                System.out.println("[AUDIT] TOKENIZE_CVV       | IN: "
+                                        + tokenizationService.mask(cvv)
+                                        + " -> OUT: " + tokenizationService.mask(cvvToken));
                             }
 
                             // 4. Print all fields (post-tokenization)

@@ -162,14 +162,13 @@ public class Iso8583Parser {
      */
     private boolean validateFieldFormat(int fieldNum, String value) {
         // Example: check numeric fields for digits only
-        switch (fieldNum) {
-            case 2: // PAN numeric
-            case 3: // Processing code numeric
-            case 4: // Amount numeric
-            case 11: // System trace audit number numeric
-                return value.matches("\\d+");
-            default:
-                return true; // Accept any format by default
-        }
+        return switch (fieldNum) {
+            case 2, 3, 4, 11 -> value.matches("\\d+");
+            default -> true;
+        }; // PAN numeric
+        // Processing code numeric
+        // Amount numeric
+        // System trace audit number numeric
+        // Accept any format by default
     }
 }

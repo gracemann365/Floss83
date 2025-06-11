@@ -157,11 +157,13 @@ public class TokenizationService {
     }
 
     /**
-     * Domain validation: CVV must be 3–4 digits.
+     * Domain validation: CVV or PIN block.
+     * Accepts 3–4 digit CVV or 16-digit PIN block (ISO 8583 Field 52).
      */
     private void validateCvv(String cvv) {
-        if (cvv == null || !cvv.matches("\\d{3,4}")) {
-            throw new IllegalArgumentException("Invalid CVV: Must be 3 or 4 digits.");
+        if (cvv == null || !cvv.matches("\\d{3,4}|\\d{16}")) {
+            throw new IllegalArgumentException(
+                    "Invalid PIN/CVV: Must be 3–4 digits for CVV or 16 digits for PIN block.");
         }
     }
 }
