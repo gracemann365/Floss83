@@ -10,6 +10,10 @@
 
 Inspired by **kernel-grade** software principles and **Level-1 PCI DSS architectures**, this suite provides a **transparent**, **composable**, and **self-hostable** card switch solution for BFSI engineers, security auditors, and compliance professionals.
 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/6da108ba-f38c-470f-9e9a-27d25cec6fee" alt="HLD Flossx83">
+</p>
+
 ### 📚 Flossx83 Documentation Index
 
 | Section                                                                     | Description                               |
@@ -30,11 +34,6 @@ Inspired by **kernel-grade** software principles and **Level-1 PCI DSS architect
 | ⚙️[ Maintainers](#-maintainers)                                             | Core team and contact                     |
 
 ---
-
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/6da108ba-f38c-470f-9e9a-27d25cec6fee" alt="HLD Flossx83">
-</p>
-
 ## **Flossx83 POS Terminal Simulator (2025 Edition)**
 <p align="center">
   <img src="https://github.com/user-attachments/assets/373e0236-4ff8-437f-8dc5-984a90e2690a" alt="HLD Flossx83">
