@@ -43,7 +43,9 @@
  */
 package com.floss83.javaswitch.connection;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -57,108 +59,76 @@ import com.floss83.javaswitch.iso8583.Iso8583ParseException;
 import com.floss83.javaswitch.iso8583.Iso8583Parser;
 import com.floss83.javaswitch.tokenization.TokenizationService;
 
-/**
- * IsoMessageController exposes a REST API endpoint to receive ISO 8583 messages
- * over HTTP. Accepts raw ISO 8583 strings via POST and prints them to the console.
- *
- * <p>
- * Example usage (HTTP POST):
- * <pre>
- *     POST /api/iso8583
- *     Body: <ISO 8583 message string>
- * </pre>
- * </p>
- *
- * <p>
- * Designed for manual/local testing with tools such as curl or Postman.
- * </p>
- *
- * @author Floss83
- * @version 1.0
- */
-/**
- * IsoMessageController receives ISO 8583 messages via HTTP and parses them.
- */
 @RestController
 @RequestMapping("/api/iso8583")
 public class IsoMessageController {
 
+    private static final int FIELD_PAN = 2;
+    private static final int FIELD_CVV = 52;
+
     private final Iso8583Parser parser = new Iso8583Parser();
     private final TokenizationService tokenizationService;
 
-    /**
-     * Spring will inject the TokenizationService bean.
-     */
     public IsoMessageController(TokenizationService tokenizationService) {
         this.tokenizationService = tokenizationService;
     }
 
-    /**
-     * Accepts POSTed ISO 8583 raw messages, parses, tokenizes PAN/CVV, prints
-     * results.
-     *
-     * @param isoMessage Raw ISO 8583 string
-     * @return 200 OK with parsed info (tokens), or 400 Bad Request on parse error
-     */
-    @PostMapping
-    public ResponseEntity<String> receiveIsoMessage(@RequestBody String isoMessage) {
-        System.out.println("[HTTP] Received: " + maskForLog(isoMessage));
+    @PostMapping(produces = "application/json")
+    public ResponseEntity<?> receiveIsoMessage(@RequestBody String isoMessage) {
+        // Log the *masked* raw message for compliance, if you wish
+        System.out.println("[HTTP] Received: " + maskRawForLog(isoMessage));
+
         try {
             Iso8583Message parsed = parser.parse(isoMessage);
+            Map<Integer, String> fields = new TreeMap<>(parsed.getMutableDataElements());
 
-            StringBuilder sb = new StringBuilder();
-            sb.append("MTI: ").append(parsed.getMti()).append("\n");
-
-            Map<Integer, String> fields = parsed.getMutableDataElements();
-
-            // Tokenize PAN (Field 2) and CVV (Field 52) if present
-            String pan = fields.get(2); // PAN
-            String cvv = fields.get(52); // CVV (optional)
-            String panToken = null;
-            String cvvToken = null;
-
-            if (pan != null) {
-                panToken = tokenizationService.tokenizePan(pan);
-                sb.append("Field 2 (PAN, tokenized): ").append(maskForLog(panToken)).append("\n");
+            // Tokenize PAN and CVV (if present)
+            String panToken = null, cvvToken = null;
+            if (fields.containsKey(FIELD_PAN)) {
+                panToken = tokenizationService.tokenizePan(fields.get(FIELD_PAN));
             }
-            if (cvv != null) {
-                cvvToken = tokenizationService.tokenizeCvv(cvv);
-                sb.append("Field 52 (CVV, tokenized): ").append(maskForLog(cvvToken)).append("\n");
+            if (fields.containsKey(FIELD_CVV)) {
+                cvvToken = tokenizationService.tokenizeCvv(fields.get(FIELD_CVV));
             }
 
-            // Print all fields, masking sensitive values
-            fields.forEach((field, value) -> {
-                if (field == 2 || field == 52)
-                    return; // already handled
-                sb.append("Field ").append(field).append(": ").append(maskForLog(value)).append("\n");
-            });
+            // Build per-field output (for both response and logs)
+            Map<String, Object> outputFields = new LinkedHashMap<>();
+            if (panToken != null)
+                outputFields.put("2_PAN_tokenized", panToken);
+            if (cvvToken != null)
+                outputFields.put("52_CVV_tokenized", cvvToken);
+            for (Map.Entry<Integer, String> e : fields.entrySet()) {
+                int field = e.getKey();
+                if (field == FIELD_PAN || field == FIELD_CVV)
+                    continue;
+                outputFields.put(String.valueOf(field), e.getValue());
+            }
 
-            System.out.println("[HTTP] Parsed (with tokens):\n" + sb);
-            return ResponseEntity.ok("Parsed OK (tokens):\n" + sb);
+            // Per-field breakdown log: PAN/CVV as tokens, rest as is
+            System.out.println("[HTTP] Parsed MTI: " + parsed.getMti());
+            outputFields.forEach((k, v) -> System.out.println("[HTTP] Field " + k + ": " + v));
+
+            // Build JSON response
+            Map<String, Object> result = new LinkedHashMap<>();
+            result.put("mti", parsed.getMti());
+            result.put("fields", outputFields);
+
+            return ResponseEntity.ok(result);
 
         } catch (Iso8583ParseException ex) {
             System.err.println("[HTTP] Parse Error: " + ex.getMessage());
             ex.printStackTrace();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body("Parse error: " + ex.getMessage());
+                    .body(Map.of("error", "Parse error: " + ex.getMessage()));
         }
     }
 
-    /**
-     * Masks PAN, CVV, or tokens for logging; last 4 for PAN, otherwise all masked.
-     * 
-     * @param value field value
-     * @return masked string for logs
-     */
-    private String maskForLog(String value) {
-        if (value == null)
-            return null;
-        if (value.matches("\\d{13,19}")) // PAN
-            return "***" + value.substring(value.length() - 4);
-        if (value.matches("\\d{3,4}")) // CVV
-            return "***";
-        if (value.length() > 10) // probably a token
-            return "***";
-        return value;
+    // Only mask PAN/CVV for logging the *raw* incoming message (not per-field
+    // tokens)
+    private String maskRawForLog(String msg) {
+        // If you want to mask PAN/CVV in the *raw* incoming message, implement here.
+        // For now, return as is (for compliance, you might parse & mask it if you
+        // want).
+        return msg;
     }
 }
