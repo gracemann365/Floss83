@@ -1,21 +1,30 @@
 # Security Policy
 
-## Supported Versions
-
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
-
-| Version | Supported          |
-| ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
-
 ## Reporting a Vulnerability
 
-Use this section to tell people how to report a vulnerability.
+If you discover a security vulnerability in Flossx83 :
 
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+1. **Do not open a public issue or discussion.**
+2. Email: [gracemann111@gmail.com](mailto:gracemann111@gmail.com) with:
+   - A detailed description of the issue
+   - Affected versions/branches (if known)
+   - Steps to reproduce or a proof of concept (PoC), if possible
+
+We aim to **acknowledge all reports within 24 hours** and will coordinate a fix or mitigation as quickly as possible.
+
+## Supported Versions
+
+| Version    | Supported |
+| ---------- | --------- |
+| main       | ✅        |
+| v0.2-alpha | ✅        |
+| <v0.2      | ❌        |
+
+## Disclosure Policy
+
+- Please use **responsible disclosure**: give us a chance to investigate and fix the issue before any public disclosure.
+- Fixes and advisories will be published in this repository under [SECURITY.md](SECURITY.md).
+
+---
+
+Thank you for helping keep Flossx83 and its users secure!
