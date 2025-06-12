@@ -35,10 +35,6 @@ Inspired by **kernel-grade** software principles and **Level-1 PCI DSS architect
 | 📚 [Full Docs](#-documentation)                                             | Wiki, API, compliance                     |
 | ⚙️ [Maintainers](#maintainers)                                             | Core team and contact                     |
 
----
-
-You can update the “Project Roadmap” anchor to match the exact section title you use (e.g., `#-project-roadmap-q2-2025` if you keep that heading style).
-Let me know if you want any sections collapsed/expanded, or any anchor fine-tuning!
 
 ---
 ## **Flossx83 POS Terminal Simulator (2025 Edition)**
