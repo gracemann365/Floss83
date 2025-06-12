@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flossx83 E2E Suite - Enterprise Financial Audit Platform</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=JetBrains+Mono:wght@100;200;300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-logo">FLOSSX83</div>
+        <div class="nav-menu" id="navMenu">
+          <a href="#features" class="nav-link">Features</a>
+          <a href="#security" class="nav-link">Security</a>
+          <a href="#demo" class="nav-link">Demo</a>
+          <a
+            href="https://github.com/gracemann365/Flossx83/wiki"
+            target="_blank"
+            class="nav-link"
+            rel="noopener"
+            >Wiki</a
+          >
+          <a
+            href="https://github.com/gracemann365/Flossx83"
+            target="_blank"
+            class="nav-link cta-nav"
+            rel="noopener"
+            >GitHub</a
+          >
+        </div>
+        <div
+          class="hamburger"
+          id="hamburger"
+          tabindex="0"
+          aria-label="Open navigation menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Background Effects -->
+    <div class="matrix-rain" id="matrixRain"></div>
+    <div class="floating-shapes" id="floatingShapes"></div>
+    <div class="particle-system" id="particleSystem"></div>
+
+    <div class="container" id="main-content">
+      <!-- Hero Section -->
+      <header class="hero-section">
+        <div class="hero-content">
+          <div class="logo-container">
+            <div class="logo">FLOSSX83</div>
+            <div class="logo-subtitle">E2E ENTERPRISE SUITE</div>
+          </div>
+          <div class="tagline">
+            <span class="tagline-main">Enterprise Financial Audit Suite</span>
+            <span class="tagline-sub"
+              >Core Card Switch Engine • Fraud Detection • ATM/POS GUI Simulator
+              • Real-time Message Tracer</span
+            >
+            <div class="tagline-badges">
+              <span class="badge">PCI-Safe</span>
+              <span class="badge">HSM Tokenization</span>
+              <span class="badge">Production Ready</span>
+            </div>
+          </div>
+          <div class="hero-cta">
+            <a
+              href="https://github.com/gracemann365/Flossx83"
+              target="_blank"
+              class="btn btn-primary"
+              rel="noopener"
+            >
+              <span>Explore Repository</span>
+              <svg
+                class="btn-icon"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </a>
+            <a
+              href="https://github.com/gracemann365/Flossx83/wiki"
+              target="_blank"
+              class="btn btn-secondary"
+              rel="noopener"
+            >
+              <span>Documentation</span>
+            </a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="terminal-window">
+            <div class="terminal-header">
+              <div class="terminal-buttons">
+                <span class="btn-close"></span>
+                <span class="btn-minimize"></span>
+                <span class="btn-maximize"></span>
+              </div>
+              <div class="terminal-title">flossx83-audit-engine</div>
+            </div>
+            <div class="terminal-content" id="terminalContent">
+              <div class="terminal-line">
+                <span class="prompt">$</span>
+                <span class="command">./flossx83 --init-audit-engine</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Stats Section -->
+      <section class="hero-stats">
+        <div class="stat-card" data-stat="iso">
+          <div class="stat-icon">🏦</div>
+          <div class="stat-content">
+            <span class="stat-number">ISO 8583</span>
+            <span class="stat-label">Payment Protocol</span>
+          </div>
+          <div class="stat-detail">Industry Standard Implementation</div>
+        </div>
+        <div class="stat-card" data-stat="e2e">
+          <div class="stat-icon">🔄</div>
+          <div class="stat-content">
+            <span class="stat-number">E2E</span>
+            <span class="stat-label">Transaction Flow</span>
+          </div>
+          <div class="stat-detail">Complete Audit Trail</div>
+        </div>
+        <div class="stat-card" data-stat="pci">
+          <div class="stat-icon">🛡️</div>
+          <div class="stat-content">
+            <span class="stat-number">PCI DSS</span>
+            <span class="stat-label">Compliant Security</span>
+          </div>
+          <div class="stat-detail">Level 1 Service Provider</div>
+        </div>
+        <div class="stat-card" data-stat="realtime">
+          <div class="stat-icon">⚡</div>
+          <div class="stat-content">
+            <span class="stat-number">Real-time</span>
+            <span class="stat-label">Message Tracing</span>
+          </div>
+          <div class="stat-detail">Microsecond Precision</div>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section id="features" class="features-section">
+        <div class="section-header">
+          <h2 class="section-title">Revolutionary Features</h2>
+          <p class="section-subtitle">
+            Cutting-edge financial technology at your fingertips
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card" data-feature="core">
+            <div class="feature-icon">🏗️</div>
+            <div class="feature-content">
+              <h3 class="feature-title">Core Switch Engine</h3>
+              <p class="feature-description">
+                High-performance card switching engine with ISO 8583 protocol
+                support. Handles millions of transactions with sub-millisecond
+                latency and enterprise-grade reliability.
+              </p>
+              <div class="feature-tech">
+                <span class="tech-tag">ISO 8583</span>
+                <span class="tech-tag">High Throughput</span>
+                <span class="tech-tag">Load Balancing</span>
+                <span class="tech-tag">Failover</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="feature-card" data-feature="fraud">
+            <div class="feature-icon">🕵️</div>
+            <div class="feature-content">
+              <h3 class="feature-title">AI Fraud Detection</h3>
+              <p class="feature-description">
+                Advanced machine learning algorithms detect suspicious patterns
+                in real-time. Behavioral analysis, velocity checks, and
+                geolocation verification prevent fraudulent transactions.
+              </p>
+              <div class="feature-tech">
+                <span class="tech-tag">ML Algorithms</span>
+                <span class="tech-tag">Pattern Analysis</span>
+                <span class="tech-tag">Risk Scoring</span>
+                <span class="tech-tag">Real-time Alerts</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="feature-card" data-feature="simulator">
+            <div class="feature-icon">🖥️</div>
+            <div class="feature-content">
+              <h3 class="feature-title">ATM/POS Simulator</h3>
+              <p class="feature-description">
+                Comprehensive GUI simulator for ATM and POS terminals. Test
+                transaction flows, validate responses, and debug payment
+                processing in a safe sandbox environment.
+              </p>
+              <div class="feature-tech">
+                <span class="tech-tag">GUI Interface</span>
+                <span class="tech-tag">Transaction Testing</span>
+                <span class="tech-tag">Response Validation</span>
+                <span class="tech-tag">Sandbox Mode</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="feature-card" data-feature="tracer">
+            <div class="feature-icon">📡</div>
+            <div class="feature-content">
+              <h3 class="feature-title">Message Tracer</h3>
+              <p class="feature-description">
+                Real-time message tracing and monitoring system. Track
+                transaction flow, monitor system health, and analyze performance
+                metrics with detailed logging.
+              </p>
+              <div class="feature-tech">
+                <span class="tech-tag">Real-time Monitoring</span>
+                <span class="tech-tag">Message Parsing</span>
+                <span class="tech-tag">Performance Metrics</span>
+                <span class="tech-tag">Detailed Logging</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="feature-card" data-feature="tokenization">
+            <div class="feature-icon">🔐</div>
+            <div class="feature-content">
+              <h3 class="feature-title">HSM Tokenization</h3>
+              <p class="feature-description">
+                Hardware Security Module integration for secure tokenization.
+                PCI DSS compliant data protection with industry-standard
+                encryption and key management.
+              </p>
+              <div class="feature-tech">
+                <span class="tech-tag">HSM Integration</span>
+                <span class="tech-tag">Token Vault</span>
+                <span class="tech-tag">AES Encryption</span>
+                <span class="tech-tag">Key Management</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="feature-card" data-feature="audit">
+            <div class="feature-icon">📊</div>
+            <div class="feature-content">
+              <h3 class="feature-title">Audit Suite</h3>
+              <p class="feature-description">
+                Comprehensive audit trail and compliance reporting. Generate
+                detailed reports, track system changes, and maintain regulatory
+                compliance with automated workflows.
+              </p>
+              <div class="feature-tech">
+                <span class="tech-tag">Audit Trail</span>
+                <span class="tech-tag">Compliance Reports</span>
+                <span class="tech-tag">Change Tracking</span>
+                <span class="tech-tag">Automated Workflows</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Flow Diagram -->
+      <section class="flow-section">
+        <div class="flow-diagram">
+          <h2 class="flow-title">Transaction Flow Architecture</h2>
+          <div class="flow-steps">
+            <div class="flow-step" data-step="1">
+              <div class="step-number">1</div>
+              <div class="step-content">
+                <h3 class="step-title">Transaction Initiation</h3>
+                <p class="step-description">
+                  Customer initiates transaction through ATM/POS terminal
+                </p>
+              </div>
+            </div>
+            <div class="flow-step" data-step="2">
+              <div class="step-number">2</div>
+              <div class="step-content">
+                <h3 class="step-title">Message Processing</h3>
+                <p class="step-description">
+                  ISO 8583 message parsed and validated by core engine
+                </p>
+              </div>
+            </div>
+            <div class="flow-step" data-step="3">
+              <div class="step-number">3</div>
+              <div class="step-content">
+                <h3 class="step-title">Fraud Detection</h3>
+                <p class="step-description">
+                  AI algorithms analyze transaction for suspicious patterns
+                </p>
+              </div>
+            </div>
+            <div class="flow-step" data-step="4">
+              <div class="step-number">4</div>
+              <div class="step-content">
+                <h3 class="step-title">Authorization</h3>
+                <p class="step-description">
+                  Transaction authorized through secure tokenization
+                </p>
+              </div>
+            </div>
+            <div class="flow-step" data-step="5">
+              <div class="step-number">5</div>
+              <div class="step-content">
+                <h3 class="step-title">Response Delivery</h3>
+                <p class="step-description">
+                  Real-time response sent back to terminal with audit trail
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Security Section -->
+      <section id="security" class="security-section">
+        <div class="security-banner">
+          <div class="security-content">
+            <div class="security-icon">🔒</div>
+            <div class="security-title">Enterprise-Grade Security</div>
+            <div class="security-description">
+              Built with military-grade encryption and PCI DSS Level 1
+              compliance. Your financial data is protected by the same security
+              standards used by central banks and major financial institutions
+              worldwide.
+            </div>
+            <div class="security-features">
+              <div class="security-feature">
+                <span class="security-feature-icon">🛡️</span>
+                <span>AES-256 Encryption</span>
+              </div>
+              <div class="security-feature">
+                <span class="security-feature-icon">🔐</span>
+                <span>HSM Token Vault</span>
+              </div>
+              <div class="security-feature">
+                <span class="security-feature-icon">📋</span>
+                <span>PCI DSS Compliant</span>
+              </div>
+              <div class="security-feature">
+                <span class="security-feature-icon">🔍</span>
+                <span>Real-time Monitoring</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Demo Section -->
+      <section id="demo" class="demo-section">
+        <div class="section-header">
+          <h2 class="section-title">Interactive Demo</h2>
+          <p class="section-subtitle">
+            Experience the power of Flossx83 in action
+          </p>
+        </div>
+
+        <div class="demo-container">
+          <div class="demo-card">
+            <div class="demo-header">
+              <h3>Live Transaction Monitor</h3>
+              <div class="status-indicator active">LIVE</div>
+            </div>
+            <div class="demo-content">
+              <div class="transaction-feed" id="transactionFeed">
+                <!-- Dynamic content will be populated by JavaScript -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer minimal-footer">
+      <div class="footer-content minimal-footer-content">
+        <span class="footer-brand">Flossx83</span>
+        <span class="footer-tagline">Enterprise Financial Audit Platform</span>
+        <span class="footer-links">
+          <a
+            href="https://github.com/gracemann365/Flossx83"
+            target="_blank"
+            rel="noopener"
+            >GitHub</a
+          >
+          <a
+            href="https://github.com/gracemann365/Flossx83/wiki"
+            target="_blank"
+            rel="noopener"
+            >Documentation</a
+          >
+        </span>
+      </div>
+      <div class="footer-bottom minimal-footer-bottom">
+        <p>&copy; 2024 Flossx83. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
