@@ -228,9 +228,9 @@ Please open a [Discussion](https://github.com/gracemann365/flossx83/discussions)
 ## Maintainers
 
 > Maintained by the **FLOSSX83 Core Contributors** – for audit professionals, fintech infra engineers, and open-compliance researchers.
-1. David Grace - Owner & Chief Engineer
+1. [David Grace](https://github.com/Gracemann365) - Owner & Chief Engineer
 2. [Goutham Rajesh](https://github.com/gouthamrajesh) - Product Manager & Launch Strategy 
-For critical issues, contact: `gracemann365@gmail.com`
+3. For critical issues, contact: `gracemann365@gmail.com`
 
 ---
 
