@@ -3,6 +3,7 @@
 </p>
 
 ---
+
 ## **Flossx83 E2E Suite: Flow Explanation (2025 Edition)**
 
 ```
@@ -37,30 +38,8 @@
 | - Standalone        |
 +---------------------+
 
-Legend:
-
-[1] POS/ATM Simulator: GUI tool (customize, send, and see responses; TCP/HTTP switchable)
-[2] Admin Dashboard: Login, visualize transactions, see ISO docs, audit logs, real-time updates
-    Main Engine: Parses, tokenizes, logs, routes, persists, calls fraud, exposes APIs for tools
-     Everything is pluggable, see-through, and auditable for QA, audit, and learning
-
-
-_+ POS/ATM Simulator [GUI]: Dual-mode, randomization, and full ISO field control—massively improved dev UX.
-
-_+ Admin Dashboard: Graphical, with search, drilldown, and real-time visualization—makes audit/training accessible.
-
-_+ Fraud Engine: Clean, modular REST microservice (pluggable for ML/rule engines).
-
-_+ Core Switch: Still the heart—now positioned as part of a suite, not a lonely engine.
-
-_+ Database Layer: Persistence in Postgres for queries, history, and regression/audit trails.
-
-_+ End-to-End Visibility: Every flow is “seeable” and interactive for users, not just a backend protocol pipe.
-
 ```
 ---
-
-
 
 ### 1. **(a) POS/ATM Simulator (GUI or Real Device) sends ISO 8583 Message (TCP or HTTP)**
 
