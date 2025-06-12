@@ -14,24 +14,31 @@ Inspired by **kernel-grade** software principles and **Level-1 PCI DSS architect
   <img src="https://github.com/user-attachments/assets/6da108ba-f38c-470f-9e9a-27d25cec6fee" alt="HLD Flossx83">
 </p>
 
-### 📚 Flossx83 Documentation Index
+### 📚 Flossx83 Index
+
 
 | Section                                                                     | Description                               |
 | --------------------------------------------------------------------------- | ----------------------------------------- |
-| 🏦[Flossx83 Overview](#flossx83-e2e-suite-flow-explanation-2025-edition)   | What Flossx83 is and why it exists        |
-| 🖼️[ System Diagrams](#flossx83-e2e-suite-flow-explanation-2025-edition)    | Visual architecture and system flow       |
-| 🖥️[ POS Terminal Simulator](#flossx83-pos-terminal-simulator-2025-edition) | GUI tool for ISO 8583 message creation    |
-| ✨[ At a Glance](#-flossx83-at-a-glance)                                     | One-line summary of each core component   |
-| 🎯[ Project Goals](#-project-goals)                                         | Objectives, philosophy, and scope         |
-| 🛠️[ Key Features](#key-features)                                          | Deep dive into each component             |
-| 🔐[ PCI & Security Practices](#-security--pci-principles)                   | Compliance and tokenization details       |
-| 📦[ Getting Started](#-getting-started)                                     | Step-by-step local setup guide            |
-| 🧪[ Testing Philosophy](#-test-philosophy)                                  | Design for auditors, fuzzers, regressions |
-| 📜[ Legal Notice](#-legal-notice)                                           | Disclaimer and usage terms                |
-| 🧭[ Roadmap](#-roadmap)                                                     | What’s done, what’s coming                |
-| 🤝[ Contributing](#-contributing)                                           | How to participate                        |
-| 📚[ Full Docs](#-documentation)                                             | Wiki, API, compliance                     |
-| ⚙️[ Maintainers](#-maintainers)                                             | Core team and contact                     |
+| 🏦 [Flossx83 Overview](#flossx83-e2e-suite-flow-explanation-2025-edition)   | What Flossx83 is and why it exists        |
+| 🖼️ [System Diagrams](#flossx83-e2e-suite-flow-explanation-2025-edition)    | Visual architecture and system flow       |
+| 🖥️ [POS Terminal Simulator](#flossx83-pos-terminal-simulator-2025-edition) | GUI tool for ISO 8583 message creation    |
+| ✨ [At a Glance](#-flossx83-at-a-glance)                                     | One-line summary of each core component   |
+| 🚀 [Project Roadmap](#project-roadmap)                             | Milestones, dates, and live status  🚀Where Do We Stand ?🚀      |
+| 🎯 [Project Goals](#-project-goals)                                         | Objectives, philosophy, and scope         |
+| 🛠️ [Key Features](#key-features)                                           | Deep dive into each component             |
+| 🔐 [PCI & Security Practices](#-security--pci-principles)                   | Compliance and tokenization details       |
+| 📦 [Getting Started](#-getting-started)                                     | Step-by-step local setup guide            |
+| 🧪 [Testing Philosophy](#-test-philosophy)                                  | Design for auditors, fuzzers, regressions |
+| 📜 [Legal Notice](#-legal-notice)                                           | Disclaimer and usage terms                |
+| 🧭 [Roadmap](#-roadmap)                                                     | What’s done, what’s coming                |
+| 🤝 [Contributing](#-contributing)                                           | How to participate                        |
+| 📚 [Full Docs](#-documentation)                                             | Wiki, API, compliance                     |
+| ⚙️ [Maintainers](#maintainers)                                             | Core team and contact                     |
+
+---
+
+You can update the “Project Roadmap” anchor to match the exact section title you use (e.g., `#-project-roadmap-q2-2025` if you keep that heading style).
+Let me know if you want any sections collapsed/expanded, or any anchor fine-tuning!
 
 ---
 ## **Flossx83 POS Terminal Simulator (2025 Edition)**
@@ -55,6 +62,31 @@ Inspired by **kernel-grade** software principles and **Level-1 PCI DSS architect
 
 ---
 
+
+---
+
+## Project Roadmap
+
+| # | Milestone (Q2 2025)                                | Target Date     | Status         | Description                                                                             |
+| - | ---------------------------------------- | --------------- | -------------- | --------------------------------------------------------------------------------------- |
+| 1 | **Audit Logger**                         | Mid June 2025   | 🚧 In Progress | Immutable, append-only event logging (JSONL & text). Core & fraud engine integration.   |
+| 2 | **ML-Infused Fraud Engine**              | Late June 2025  | 🟢 Up Next     | Plug-in machine learning & rule-based fraud scoring for ISO8583 messages.               |
+| 3 | **Stable Release v1.0**                  | Early July 2025 | 🟡 On Deck     | Complete, production-ready switch: core engine, fraud, logging, and admin modules.      |
+| 4 | **TestOps: End-to-End Automation**       | Early July 2025 | 🟡 On Deck     | Automated E2E transaction, fraud, and audit test suite (CI-ready).                      |
+| 5 | **DevOps Integration (CI/CD)**           | Early July 2025 | 🟡 On Deck     | Streamlined pipelines for build, test, release, and deploy.                             |
+| 6 | **Documentation Suite**                  | Mid July 2025   | 🟢 Lining Up   | Enterprise-grade API docs, user guides, architecture diagrams, live usage examples.     |
+| 7 | **IaC & Deployment Scripts**             | Mid July 2025   | 🟢 Lining Up   | Docker, Kubernetes, and Terraform scripts for one-click infra on cloud or local.        |
+| 8 | **Cloud Testing & SRE/Observability**    | Late July 2025  | 🟢 Lining Up   | Cloud-native test flows, monitoring dashboards, and real-time logging/metrics.          |
+| 9 | **Real-World Benchmarking & Perf Tests** | Late July 2025  | 🟢 Lining Up   | Throughput, latency, and reliability benchmarks simulating live card network workloads. |
+
+---
+
+> 🏗️ **This roadmap is dynamic—milestones and statuses are updated as we advance!
+> Jump into [Issues](https://github.com/YOUR_REPO/issues) or [Projects](https://github.com/YOUR_REPO/projects) to track live progress or contribute.**
+
+---
+
+
 ## 🎯 Project Goals
 
 - Deliver a **complete ISO 8583 infrastructure** for message routing, testing, audit, and compliance.
@@ -65,7 +97,7 @@ Inspired by **kernel-grade** software principles and **Level-1 PCI DSS architect
 
 ---
 
-## 🛠️ Key Features
+## Key Features
 
 ### 🔄 Core Switch Engine
 - Parses and routes ISO 8583 messages (MTI + Fxx).
@@ -193,7 +225,7 @@ Please open a [Discussion](https://github.com/gracemann365/flossx83/discussions)
 
 ---
 
-## ⚙️ Maintainers
+## Maintainers
 
 > Maintained by the **FLOSSX83 Core Contributors** – for audit professionals, fintech infra engineers, and open-compliance researchers.
 
