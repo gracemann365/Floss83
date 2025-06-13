@@ -6,7 +6,7 @@
 
 ## **Flossx83 E2E Suite: Flow Explanation (2025 Edition)**
 
-**Flossx83** is an enterprise-grade, auditable ISO 8583 transaction processing platform. Designed for **core banking**, **regulatory audits**, and **fintech developers**, it offers full-stack financial transaction simulation, tokenization, fraud scoring, and real-time visibility—all without vendor lock-in.
+**Flossx83** is ISO 8583 Simulation Tool For Indie Devs its a  processing platform. Designed for **core banking**, **regulatory audits**, and **fintech developers**, it offers full-stack financial transaction simulation, tokenization, fraud scoring, and real-time visibility—all without vendor lock-in.
 
 Inspired by **kernel-grade** software principles and **Level-1 PCI DSS architectures**, this suite provides a **transparent**, **composable**, and **self-hostable** card switch solution for BFSI engineers, security auditors, and compliance professionals.
 
