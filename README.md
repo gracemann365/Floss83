@@ -1,6 +1,7 @@
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/b85e77d8-59d4-417b-b673-78c5ccf4d8cc" alt="Alt text for your image">
+  <img src="https://github.com/user-attachments/assets/1085e88e-267e-4ef9-b302-6224a76c4566" alt="Alt text for your image">
 </p>
+
 
 ---
 
